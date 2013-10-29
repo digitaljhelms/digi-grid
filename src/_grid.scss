@@ -50,7 +50,7 @@ $borderBox: "*" !default;
   @include grid-leading($rowHeight, $leading);
 }
 
-@mixin grid-width($n, $cols: $columns, $gutterWidth: $gutterWidth, $flush: $flush) {
+@mixin grid-width($n, $cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
   @if $flush {
     width: $gridWidth / $cols * $n;
   } @else {
@@ -94,7 +94,7 @@ $borderBox: "*" !default;
   }
 }
 
-@mixin grid-cols($cols: $columns, $gutterWidth: $gutterWidth, $flush: $flush) {
+@mixin grid-cols($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
   #{enumerate(".col", 1, $cols, $classSeparator)} {
     @include grid-unit-base($gutterWidth);
     @if $flush {
@@ -108,10 +108,10 @@ $borderBox: "*" !default;
   }
   @for $n from 1 through $cols {
     .col#{$classSeparator}#{$n} {
-      @include grid-width($n, $cols, $gutterWidth, false);
+      @include grid-width($n, $cols, $gridWidth, $gutterWidth, false);
       @if $flush {
         &.flush {
-          @include grid-width($n, $cols, $gutterWidth, true);
+          @include grid-width($n, $cols, $gridWidth, $gutterWidth, true);
         }
       }
     }
@@ -212,7 +212,7 @@ $borderBox: "*" !default;
 @mixin grid-system($columns: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: false) {
   @include grid-container($gridWidth);
   @include grid-rows($rowHeight, $leading);
-  @include grid-cols($columns, $gutterWidth, $flush);
+  @include grid-cols($columns, $gridWidth, $gutterWidth, $flush);
   @include grid-prefixes($columns, $gridWidth, $gutterWidth, $flush);
   @include grid-suffixes($columns, $gridWidth, $gutterWidth, $flush);
   @include grid-children;
