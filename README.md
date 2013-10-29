@@ -111,3 +111,7 @@ Once all dependencies are met, there are two tasks available:
 * `grunt preview` - Launches Connect middleware server with `demo/` as the base path, available for viewing at http://localhost:9000/
 
 Running `grunt` alone will run both of these tasks in sequence.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/digitaljhelms/digi-grid/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
