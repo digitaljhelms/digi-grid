@@ -1,6 +1,6 @@
 {
   "name": "digi-grid",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sass grid system, based on 960.gs and Semantic.gs",
   "keywords": [
     "sass",
