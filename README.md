@@ -1,6 +1,10 @@
 digi-grid
 =========
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/digitaljhelms/digi-grid/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+---
+
 The grid is custom, based primarily on [960.gs](http://960.gs/) by Nathan Smith, but also on [Semantic.gs](http://semantic.gs/) (formerly referred to as the 1Kb CSS Grid) by Tyler Tate. There is the concept of a container (inherent to 960.gs) however it is less meaningful in lieu of rows. While this may seem to slightly litter markup with `class="row"` declarations, the value is seen when it comes to nested columns.
 
 ## Usage
@@ -71,12 +75,12 @@ To create a grid system using only CSS, use the following semantic grid mixins:
 `N` is the number of grid columns to span as in `grid_N` or `push_N`. Example:
 
 ```scss
-@import "path/to/src/grid"
-
 // override defaults
 $columns: 16;
 $gridWidth: 960px;
 $gutterWidth: 20px;
+
+@import "path/to/src/grid"
 
 @include box-sizing-border-box-ftw; // see note below
 
@@ -111,7 +115,3 @@ Once all dependencies are met, there are two tasks available:
 * `grunt preview` - Launches Connect middleware server with `demo/` as the base path, available for viewing at http://localhost:9000/
 
 Running `grunt` alone will run both of these tasks in sequence.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/digitaljhelms/digi-grid/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
