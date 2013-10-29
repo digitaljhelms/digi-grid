@@ -1,0 +1,17 @@
+{
+  "name": "digi-grid",
+  "version": "0.1.0",
+  "description": "Sass grid system, based on 960.gs and Semantic.gs",
+  "keywords": [
+    "sass",
+    "css",
+    "grid"
+  ],
+  "main": "src/_grid.scss",
+  "ignore": [
+    "example",
+    ".*",
+    "Gemfile*",
+    "Gruntfile.js"
+  ]
+}

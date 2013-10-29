@@ -1,0 +1,31 @@
+{
+  "name": "digi-grid",
+  "version": "0.1.0",
+  "author": "Jeremy Helms <digitaljhelms@gmail.com>",
+  "description": "Sass grid system, based on 960.gs and Semantic.gs",
+  "contributors": [
+    {
+      "name": "Jeremy Helms",
+      "email": "digitaljhelms@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitaljhelms/digi-grid.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-compass": "~0.5.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "load-grunt-tasks": "~0.1.0",
+    "time-grunt": "~0.1.1"
+  },
+  "scripts": {
+    "preinstall": "npm install grunt-cli -g"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

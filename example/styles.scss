@@ -1,0 +1,37 @@
+// imports
+@import "compass/reset";
+@import "compass/utilities/general/clearfix";
+@import "../src/grid";
+
+body {
+  font-family: sans-serif;
+  background-color: #fff;
+  background-repeat: repeat-y;
+  background-image: url(data:image/gif;base64,R0lGODlhwAMBAIAAAP/////l5SH5BAAHAP8ALAAAAADAAwEAAAI3hI+hy+0Po2yo2jqz3vJ6zIXi9JXAiKaL+amuyHrvrMUXjUe2lffUnvAJgUFhj3gw+pAG5fFTAAA7);
+  background-position: center;
+}
+
+// build grid
+@include grid-system-complete($flush: true);
+
+// demo typography
+p {
+  border: 1px solid #666;
+  overflow: hidden;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+h1, h2 {
+  text-align: center;
+}
+h2 {
+  color: #fff;
+  background-color: #262626;
+  margin: 30px 0 10px 0;
+  padding: 5px;
+}

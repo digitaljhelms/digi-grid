@@ -1,0 +1,230 @@
+@import "compass/css3/box-sizing";
+@import "compass/utilities/general/clearfix";
+
+$columns: 12 !default;
+$gridWidth: 960px !default;
+$gutterWidth: 20px !default;
+$rowHeight: auto !default;
+$leading: 4px !default; // should be evenly divisible by $rowHeight (if exists)
+$flush: false !default;
+$classSeparator: "-" !default;
+$borderBox: "*" !default;
+
+// apply a natural box layout model to all elements
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+@mixin box-sizing-border-box-ftw($borderBox: $borderBox) {
+  #{$borderBox} {
+    @include box-sizing(border-box);
+
+    &:before, &:after {
+      @include box-sizing(border-box);
+    }
+  }
+}
+
+@mixin grid-container($gridWidth: $gridWidth) {
+  width: $gridWidth;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  @include clearfix;
+}
+
+@mixin grid-row($rowHeight: $rowHeight) {
+  .row {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    height: $rowHeight;
+    @if $rowHeight != 'auto' {
+      overflow-y: hidden;
+    }
+    @include clearfix;
+  }
+}
+
+@mixin grid-rows($rowHeight: $rowHeight, $leading: $leading) {
+  @include grid-row($rowHeight);
+  @include grid-leading($rowHeight, $leading);
+}
+
+@mixin grid-width($n, $cols: $columns, $gutterWidth: $gutterWidth, $flush: $flush) {
+  @if $flush {
+    width: $gridWidth / $cols * $n;
+  } @else {
+    width: $gridWidth / $cols * $n - $gutterWidth;
+  }
+}
+
+@mixin grid-unit-base($gutterWidth: $gutterWidth) {
+  display: inline;
+  float: left;
+  margin: {
+    left: $gutterWidth / 2;
+    right: $gutterWidth / 2;
+  }
+}
+
+@mixin grid($n, $cols: $columns, $gutterWidth: $gutterWidth) {
+  @include grid-unit-base($gutterWidth);
+  @include grid-width($n, $cols, $gutterWidth);
+}
+
+@mixin alpha {
+    margin-left: 0;
+}
+
+@mixin omega {
+    margin-right: 0;
+}
+
+@mixin grid-leading($rowHeight: $rowHeight, $leading: $leading) {
+  $through: 12;
+
+  @if $rowHeight != 'auto' {
+    $through: $rowHeight / $leading;
+  }
+
+  @for $n from 1 through $through {
+    .leading#{$classSeparator}#{$n} {
+      padding-bottom: ($n*$leading);
+    }
+  }
+}
+
+@mixin grid-cols($cols: $columns, $gutterWidth: $gutterWidth, $flush: $flush) {
+  #{enumerate(".col", 1, $cols, $classSeparator)} {
+    @include grid-unit-base($gutterWidth);
+    @if $flush {
+      &.flush {
+        margin: {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+  @for $n from 1 through $cols {
+    .col#{$classSeparator}#{$n} {
+      @include grid-width($n, $cols, $gutterWidth, false);
+      @if $flush {
+        &.flush {
+          @include grid-width($n, $cols, $gutterWidth, true);
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-prefix($n, $cols, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
+  @if $flush {
+    margin-left: $gridWidth / $cols * $n;
+  } @else {
+    margin-left: $gridWidth / $cols * $n + ($gutterWidth / 2);
+  }
+}
+
+@mixin grid-prefixes($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
+  @for $n from 1 through $cols - 1 {
+    .prefix#{$classSeparator}#{$n} {
+      @include grid-prefix($n, $cols, $gridWidth, $gutterWidth);
+      @if $flush {
+        &.flush {
+          @include grid-prefix($n, $cols, $gridWidth, $gutterWidth, $flush);
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-suffix($n, $cols, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
+  @if $flush {
+    margin-right: $gridWidth / $cols * $n;
+  } @else {
+    margin-right: $gridWidth / $cols * $n + ($gutterWidth / 2);
+  }
+}
+
+@mixin grid-suffixes($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
+  @for $n from 1 through $cols - 1 {
+    .suffix#{$classSeparator}#{$n} {
+      @include grid-suffix($n, $cols, $gridWidth, $gutterWidth);
+      @if $flush {
+        &.flush {
+          @include grid-suffix($n, $cols, $gridWidth, $gutterWidth, $flush);
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-children {
+  .alpha {
+    @include alpha;
+  }
+  .omega {
+    @include omega;
+  }
+}
+
+
+@mixin grid-move-base {
+  position: relative;
+}
+
+@mixin grid-move-push($n, $cols, $gridWidth: $gridWidth) {
+  left: $gridWidth / $cols * $n;
+}
+
+@mixin grid-move-pull($n, $cols, $gridWidth: $gridWidth) {
+  left: -($gridWidth / $cols) * $n;
+}
+
+@mixin grid-push($n, $cols: $columns) {
+  @include grid-move-base;
+  @include grid-move-push($n, $cols);
+}
+
+@mixin grid-pull($n, $cols: $columns) {
+  @include grid-move-base;
+  @include grid-move-pull($n, $cols);
+}
+
+@mixin grid-movements($cols: $columns, $gridWidth: $gridWidth) {
+  #{enumerate(".push", 1, $cols - 1, $classSeparator)},
+  #{enumerate(".pull", 1, $cols - 1, $classSeparator)} {
+    @include grid-move-base;
+  }
+  @for $n from 1 through $cols - 1 {
+    .push#{$classSeparator}#{$n} {
+      @include grid-move-push($n, $cols, $gridWidth);
+    }
+    .pull#{$classSeparator}#{$n} {
+      @include grid-move-pull($n, $cols, $gridWidth);
+    }
+  }
+}
+
+// To scope a grid inside a specific set of selectors or to control the container class name:
+// .my_container { @include grid-system($columns: 12, $gridWidth: 960px, $gutterWidth: 20px, $flush: true); }
+@mixin grid-system($columns: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: false) {
+  @include grid-container($gridWidth);
+  @include grid-rows($rowHeight, $leading);
+  @include grid-cols($columns, $gutterWidth, $flush);
+  @include grid-prefixes($columns, $gridWidth, $gutterWidth, $flush);
+  @include grid-suffixes($columns, $gridWidth, $gutterWidth, $flush);
+  @include grid-children;
+  @include grid-movements($columns, $gridWidth);
+}
+
+// To create a general top-level grid system:
+// @include grid-system-complete($columns: 12, $gridWidth: 960px, $gutterWidth: 20px, $flush: true);
+@mixin grid-system-complete($columns: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: false) {
+  @include box-sizing-border-box-ftw;
+
+  .container#{$classSeparator}#{$columns} {
+    @include grid-system($columns, $gridWidth, $gutterWidth, $rowHeight, $leading, $flush);
+  }
+}
