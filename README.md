@@ -15,6 +15,7 @@ To digest this project as a sub-project into super-project, the super-project mu
 The grid uses the following configuration variables:
 
 * `$columns` (default: 12) count of grid columns
+* `$rows` (default: 0) number of row-spans to generate by multiplying this value by `$rowHeight` (generally unused)
 * `$gridWidth` (default: 960px) default width of the grid container
 * `$gutterWidth` (default: 20px) default gutter width between columns
 * `$rowHeight` (default: auto) default row height, if set to anything other than 'auto' row overflow-y is hidden
@@ -38,7 +39,7 @@ To create a grid system that works like an off the shelf framework, use the `+gr
 The grid may also be customized by passing keyword arguments to the mixin as demonstrated:
 
 ```scss
-@include grid-system-complete($columns: 12, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: 100px, $leading: 10px, $flush: true);
+@include grid-system-complete($columns: 12, $rows: 2, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: 100px, $leading: 10px, $flush: true);
 ```
 
 *Note: Each of the optional keyword arguments pair up with with configuration variables outlined above.*
@@ -67,13 +68,13 @@ To create a grid system using only CSS, use the following semantic grid mixins:
 
 * Use the `@include grid-container($gridWidth)` mixin to declare your container element.
 * Use the `@include grid(N, $columns, $gutterWidth)` mixin to declare a grid element.
-* Use the `@include grid-row($gridWidth)` mixin to declare a "row" element.
+* Use the `@include grid-row(N, $rowHeight, $leading)` mixin to declare a "row" element.
 * Use the `@include alpha` and `@include omega` mixins to declare the first and last grid elements for a row.
 * Use the `@include grid-prefix(N, $columns, $gridWidth, $gutterWidth)` and `@include grid-suffix(N, $columns, $gridWidth, $gutterWidth)`
  mixins to add empty grid columns before or after a grid element.
 * Use the `@include grid-push(N, $columns)` and `@include grid-pull(N, $columns)` mixins to move a grid element from its default position.
 
-`N` is the number of grid columns to span as in `grid_N` or `push_N`. Example:
+`N` is the number of grid columns or rows to span (as in `col-N`, `row span-N` or `push-N`). Example:
 
 ```scss
 // override defaults
