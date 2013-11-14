@@ -38,9 +38,6 @@ $borderBox: "*" !default;
       right: auto;
     }
     height: $rowHeight;
-    @if $rowHeight != 'auto' {
-      overflow-y: hidden;
-    }
     @include clearfix;
   }
 }
