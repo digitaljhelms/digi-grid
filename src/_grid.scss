@@ -103,7 +103,7 @@ $borderBox: "*" !default;
 
   @for $n from 1 through $through {
     .leading#{$classSeparator}#{$n} {
-      padding-bottom: ($n*$leading);
+      margin-bottom: ($n*$leading);
     }
   }
 }
