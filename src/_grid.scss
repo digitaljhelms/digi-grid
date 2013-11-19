@@ -80,6 +80,7 @@ $borderBox: "*" !default;
     right: $gutterWidth / 2;
   }
   overflow-x: hidden;
+  position: relative;
 }
 
 @mixin grid($n, $cols: $columns, $gutterWidth: $gutterWidth) {
