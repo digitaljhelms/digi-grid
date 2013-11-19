@@ -11,16 +11,44 @@ body {
   background-position: center;
 }
 
+$columns: 12;
+$classSeparator: "-";
+$rows: 4;
+
 // build grid
-@include grid-system-complete($flush: true);
+@include grid-system-complete($columns: $columns, $rows: $rows, $rowHeight: 60px, $flush: true);
+
+// demonstration borders
+@for $i from 1 through $columns {
+  .col#{$classSeparator}#{$i} {
+    border: 1px solid #666;
+  }
+}
+
+#{enumerate(".push", 1, ($columns - 1), $classSeparator)},
+#{enumerate(".pull", 1, ($columns - 1), $classSeparator)} {
+  border: none;
+}
+
+.rowspan {
+  border: 1px solid #666;
+  #{enumerate(".col", 1, ($columns), $classSeparator)} {
+    border: none;
+    p {
+      position: absolute;
+      top: 50%;
+      margin-top: -16px;
+    }
+  }
+}
 
 // demo typography
 p {
-  border: 1px solid #666;
   overflow: hidden;
   margin: 0;
   padding: 10px 0;
   text-align: center;
+  width: 100%;
 }
 h1 {
   font-size: 2em;
