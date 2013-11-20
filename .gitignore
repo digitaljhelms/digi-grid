@@ -1,0 +1,25 @@
+# directories
+.sass-cache
+.tmp
+demo
+example
+node_modules
+src
+
+# files
+.editorconfig
+.gitignore
+.jshintrc
+.rvmrc
+Gemfile
+Gemfile.lock
+Gruntfile.js
+LICENSE
+README.md
+bower.json
+example/index.html
+example/styles.scss
+package.json
+src/_grid.scss
+
+npm-debug.log
