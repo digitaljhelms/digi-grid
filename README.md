@@ -117,3 +117,30 @@ Once all dependencies are met, there are two tasks available:
 * `grunt preview` - Launches Connect middleware server with `demo/` as the base path, available for viewing at http://localhost:9000/
 
 Running `grunt` alone will run both of these tasks in sequence.
+
+### GitHub Pages
+
+Any time the `master` branch is pushed to a remote, a Git pre-push hook [can be] triggered:
+
+```sh
+#!/bin/sh
+echo "\n[digi-grid pre-push hook]"
+if [ "`git branch | grep ^* | cut -d' ' -f2`" == "master" ]; then
+   grunt build
+   git checkout gh-pages
+   cp demo/* .
+   if ! git diff --no-ext-diff --quiet --exit-code; then
+      git add .
+      git commit -m "Updating demo"
+      git push
+   fi
+   git checkout master
+   echo "[digi-grid pre-push hook: complete]"
+fi
+```
+
+Placing this in `.git/hooks/pre-push` (relative to the repository clone) will commit an update on the `gh-pages` branch any time the built demo files are modified.
+
+To bypass the pre-push hook, `git push --no-verify` may be used.
+
+*Note: Remember to `chmod +x .git/hooks/pre-push` to mark the file with execute permissions or the hook will not run.*
