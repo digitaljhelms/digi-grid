@@ -6,7 +6,7 @@ $rows: 0 !default;
 $gridWidth: 960px !default;
 $gutterWidth: 20px !default;
 $rowHeight: auto !default;
-$leading: 4px !default; // should be evenly divisible by $rowHeight (if exists)
+$leading: 4px !default;
 $flush: false !default;
 $classSeparator: "-" !default;
 $borderBox: "*" !default;
@@ -106,9 +106,9 @@ $borderBox: "*" !default;
 @mixin grid-leading($rowHeight: $rowHeight, $leading: $leading) {
   $through: 12;
 
-  @if ($rowHeight != 'auto') {
-    $through: $rowHeight / $leading;
-  }
+  // @if ($rowHeight != 'auto') {
+  //   $through: $rowHeight / $leading;
+  // }
 
   @for $n from 1 through $through {
     .leading#{$classSeparator}#{$n} {

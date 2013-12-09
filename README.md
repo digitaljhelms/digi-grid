@@ -19,7 +19,7 @@ The grid uses the following configuration variables:
 * `$gridWidth` (default: 960px) default width of the grid container
 * `$gutterWidth` (default: 20px) default gutter width between columns
 * `$rowHeight` (default: auto) default row height, if set to anything other than 'auto' row overflow-y is hidden
-* `$leading` (default: 4px) leading between rows, dividied against `$rowHeight` (if exists) and therefore should be evenly divisable by `$rowHeight`
+* `$leading` (default: 4px) base value for leading between rows; base is multiplied 12 times, 1-12, to generate 12 leading options
 * `$flush` (default: false) indicates whether or not to also generate flush grid columns (aka full-width columns without gutters)
 * `$classSeparator` (default: `-`) separator for generated classes
 
