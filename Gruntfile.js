@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     app: {
       src: 'example',
       dist: 'demo',
-      tmp: '.tmp',
+      tmp: '.sass-cache',
     },
     connect: {
       app: {
