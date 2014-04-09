@@ -1,9 +1,7 @@
 # directories
 .sass-cache
-.tmp
 demo
 node_modules
 
 # files
-.rvmrc
 npm-debug.log

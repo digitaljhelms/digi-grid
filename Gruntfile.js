@@ -34,18 +34,15 @@ module.exports = function (grunt) {
         }]
       }
     },
-    compass: {
-      options: {
-        sassDir: '<%= app.src %>', // source dir
-        cssDir: '<%= app.dist %>', // target dir
-        relativeAssets: true,
-        assetCacheBuster: false
-      },
+    sass: {
       app: {
-        options: {
-          // debugInfo: true,
-          outputStyle: 'expanded'
-        }
+        files: [{
+          expand: true,
+          cwd: '<%= app.src %>',
+          src: ['*.scss'],
+          dest: '<%= app.dist %>',
+          ext: '.css'
+        }]
       }
     },
     copy: {
@@ -58,7 +55,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', 'Build example', [
     'clean',
-    'compass',
+    'sass',
     'copy'
   ]);
 

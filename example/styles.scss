@@ -1,6 +1,4 @@
 // imports
-@import "compass/reset";
-@import "compass/utilities/general/clearfix";
 @import "../src/grid";
 
 body {
@@ -25,19 +23,22 @@ $rows: 4;
   }
 }
 
-#{enumerate(".push", 1, ($columns - 1), $classSeparator)},
-#{enumerate(".pull", 1, ($columns - 1), $classSeparator)} {
-  border: none;
+@for $n from 1 through ($columns - 1) {
+  .push#{$classSeparator}#{$n}, .pull#{$classSeparator}#{$n} {
+    border: none;
+  }
 }
 
 .rowspan {
   border: 1px solid #666;
-  #{enumerate(".col", 1, ($columns), $classSeparator)} {
-    border: none;
-    p {
-      position: absolute;
-      top: 50%;
-      margin-top: -16px;
+  @for $n from 1 through $columns {
+    .col#{$classSeparator}#{$n} {
+      border: none;
+      p {
+        position: absolute;
+        top: 50%;
+        margin-top: -16px;
+      }
     }
   }
 }
