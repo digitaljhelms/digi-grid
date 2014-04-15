@@ -10,7 +10,7 @@ The grid is custom, based primarily on [960.gs](http://960.gs/) by Nathan Smith,
 
 ## Usage
 
-To digest this project as a sub-project into super-project, the super-project must have access to a [Ruby](https://www.ruby-lang.org/en/) binary and the [Compass](http://compass-style.org/) gem.
+To digest this project as a sub-project into super-project, the super-project must have access to either [Libsass](http://libsass.org/) or a [Ruby](https://www.ruby-lang.org/en/) binary and the [Sass](http://sass-lang.com/) gem.
 
 The grid uses the following configuration variables:
 
@@ -109,7 +109,7 @@ $gutterWidth: 20px;
 
 ## Building Demo
 
-This project uses Grunt to generate the demo site; Grunt requires [Node](http://nodejs.org/) (>=0.10.0) be installed. If Node is already installed, simply run `npm install` from the project root folder to install Grunt (if it is not already installed) along with other project dependencies. Additionally, Ruby and Compass are required; if Bundler is available, a `Gemfile` has been provided for the `bundle install` command to leverage.
+This project uses Grunt to generate the demo site; Grunt requires [Node](http://nodejs.org/) (>=0.10.0) be installed. If Node is already installed, simply run `npm install` from the project root folder to install Grunt (if it is not already installed) along with other project dependencies.
 
 Once all dependencies are met, there are two tasks available:
 
