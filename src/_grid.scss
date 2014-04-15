@@ -1,5 +1,5 @@
-@import "compass/css3/box-sizing";
-@import "compass/utilities/general/clearfix";
+// local leech of various compass mixins; no Compass or Ruby deps!
+@import "compass";
 
 $columns: 12 !default;
 $rows: 0 !default;
@@ -24,6 +24,21 @@ $borderBox: "*" !default;
 }
 
 @mixin grid-container($gridWidth: $gridWidth) {
+  // http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified
+  &:before,
+  &:after {
+    content: '.';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+  }
+
+  position: relative;
+
   width: $gridWidth;
   margin: {
     left: auto;
@@ -54,8 +69,10 @@ $borderBox: "*" !default;
   }
 
   @if ($rowHeight != 'auto' and $rows > 0) {
-    #{enumerate(".rowspan .col", 1, $cols, $classSeparator)} {
-      height: 100%;
+    @for $n from 1 through $cols {
+      .rowspan .col#{$classSeparator}#{$n} {
+        height: 100%;
+      }
     }
   }
 
@@ -86,7 +103,7 @@ $borderBox: "*" !default;
     left: $gutterWidth / 2;
     right: $gutterWidth / 2;
   }
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 }
 
@@ -118,13 +135,15 @@ $borderBox: "*" !default;
 }
 
 @mixin grid-cols($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
-  #{enumerate(".col", 1, $cols, $classSeparator)} {
-    @include grid-unit-base($gutterWidth);
-    @if ($flush) {
-      &.flush {
-        margin: {
-          left: 0;
-          right: 0;
+  @for $n from 1 through $cols {
+    .col#{$classSeparator}#{$n} {
+      @include grid-unit-base($gutterWidth);
+      @if ($flush) {
+        &.flush {
+          margin: {
+            left: 0;
+            right: 0;
+          }
         }
       }
     }
@@ -215,9 +234,10 @@ $borderBox: "*" !default;
 }
 
 @mixin grid-movements($cols: $columns, $gridWidth: $gridWidth) {
-  #{enumerate(".push", 1, ($cols - 1), $classSeparator)},
-  #{enumerate(".pull", 1, ($cols - 1), $classSeparator)} {
-    @include grid-move-base;
+  @for $n from 1 through ($cols - 1) {
+    .push#{$classSeparator}#{$n}, .pull#{$classSeparator}#{$n} {
+      @include grid-move-base;
+    }
   }
   @for $n from 1 through ($cols - 1) {
     .push#{$classSeparator}#{$n} {
