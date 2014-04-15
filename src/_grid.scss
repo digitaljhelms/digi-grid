@@ -24,6 +24,21 @@ $borderBox: "*" !default;
 }
 
 @mixin grid-container($gridWidth: $gridWidth) {
+  // http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified
+  &:before,
+  &:after {
+    content: '.';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+  }
+
+  position: relative;
+
   width: $gridWidth;
   margin: {
     left: auto;
@@ -88,7 +103,7 @@ $borderBox: "*" !default;
     left: $gutterWidth / 2;
     right: $gutterWidth / 2;
   }
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 }
 
