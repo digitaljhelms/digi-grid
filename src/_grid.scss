@@ -8,6 +8,7 @@ $gutterWidth: 20px !default;
 $rowHeight: auto !default;
 $leading: 4px !default;
 $flush: false !default;
+$nohide: false !default;
 $classSeparator: "-" !default;
 $borderBox: "*" !default;
 
@@ -134,7 +135,7 @@ $borderBox: "*" !default;
   }
 }
 
-@mixin grid-cols($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
+@mixin grid-cols($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush, $nohide: $nohide) {
   @for $n from 1 through $cols {
     .col#{$classSeparator}#{$n} {
       @include grid-unit-base($gutterWidth);
@@ -144,6 +145,11 @@ $borderBox: "*" !default;
             left: 0;
             right: 0;
           }
+        }
+      }
+      @if ($nohide) {
+        &.nohide {
+          overflow: visible;
         }
       }
     }
@@ -250,11 +256,11 @@ $borderBox: "*" !default;
 }
 
 // To scope a grid inside a specific set of selectors or to control the container class name:
-// .my_container { @include grid-system($columns: 12, $rows: 0, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: auto, $leading: 4px, $flush: true); }
-@mixin grid-system($columns: $columns, $rows: $rows, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: $flush) {
+// .my_container { @include grid-system($columns: 12, $rows: 0, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: auto, $leading: 4px, $flush: true, $nohide: true); }
+@mixin grid-system($columns: $columns, $rows: $rows, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: $flush, $nohide: $nohide) {
   @include grid-container($gridWidth);
   @include grid-row($columns, $rows, $rowHeight, $leading);
-  @include grid-cols($columns, $gridWidth, $gutterWidth, $flush);
+  @include grid-cols($columns, $gridWidth, $gutterWidth, $flush, $nohide);
   @include grid-prefixes($columns, $gridWidth, $gutterWidth, $flush);
   @include grid-suffixes($columns, $gridWidth, $gutterWidth, $flush);
   @include grid-children;
@@ -262,11 +268,11 @@ $borderBox: "*" !default;
 }
 
 // To create a general top-level grid system:
-// @include grid-system-complete($columns: 12, $rows: 0, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: auto, $leading: 4px, $flush: true);
-@mixin grid-system-complete($columns: $columns, $rows: $rows, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: $flush) {
+// @include grid-system-complete($columns: 12, $rows: 0, $gridWidth: 960px, $gutterWidth: 20px, $rowHeight: auto, $leading: 4px, $flush: true, $nohide: true);
+@mixin grid-system-complete($columns: $columns, $rows: $rows, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $rowHeight: $rowHeight, $leading: $leading, $flush: $flush, $nohide: $nohide) {
   @include box-sizing-border-box-ftw;
 
   .container#{$classSeparator}#{$columns} {
-    @include grid-system($columns, $rows, $gridWidth, $gutterWidth, $rowHeight, $leading, $flush);
+    @include grid-system($columns, $rows, $gridWidth, $gutterWidth, $rowHeight, $leading, $flush, $nohide);
   }
 }

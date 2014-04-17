@@ -14,14 +14,15 @@ To digest this project as a sub-project into super-project, the super-project mu
 
 The grid uses the following configuration variables:
 
-* `$columns` (default: 12) count of grid columns
-* `$rows` (default: 0) number of row-spans to generate by multiplying this value by `$rowHeight` (generally unused)
-* `$gridWidth` (default: 960px) default width of the grid container
-* `$gutterWidth` (default: 20px) default gutter width between columns
-* `$rowHeight` (default: auto) default row height, if set to anything other than 'auto' row overflow-y is hidden
-* `$leading` (default: 4px) base value for leading between rows; base is multiplied 12 times, 1-12, to generate 12 leading options
-* `$flush` (default: false) indicates whether or not to also generate flush grid columns (aka full-width columns without gutters)
-* `$classSeparator` (default: `-`) separator for generated classes
+* `$columns` (number, default: 12) count of grid columns
+* `$rows` (number, default: 0) number of row-spans to generate by multiplying this value by `$rowHeight` (generally unused)
+* `$gridWidth` (px, default: 960px) default width of the grid container
+* `$gutterWidth` (px, default: 20px) default gutter width between columns
+* `$rowHeight` (px, default: auto) default row height, if set to anything other than 'auto' row overflow-y is hidden
+* `$leading` (px, default: 4px) base value for leading between rows; base is multiplied 12 times, 1-12, to generate 12 leading options
+* `$flush` (boolean, default: false) indicates whether or not to also generate flush grid columns (aka full-width columns without gutters)
+* `$nohide` (boolean, default: false) indicates whether or not to generate a `nohide` class for each grid column (overrides the default `overflow:hidden` declaration)
+* `$classSeparator` (string, default: `-`) separator for generated classes
 
 All of the mixins use these configuration variables as defaults if the corresponding argument is omitted from a mixin call.
 
