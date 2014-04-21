@@ -177,7 +177,7 @@ $borderBox: "*" !default;
 @mixin grid-prefixes($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
   @for $n from 1 through ($cols - 1) {
     .prefix#{$classSeparator}#{$n} {
-      @include grid-prefix($n, $cols, $gridWidth, $gutterWidth);
+      @include grid-prefix($n, $cols, $gridWidth, $gutterWidth, false);
       @if ($flush) {
         &.flush {
           @include grid-prefix($n, $cols, $gridWidth, $gutterWidth, $flush);
@@ -198,7 +198,7 @@ $borderBox: "*" !default;
 @mixin grid-suffixes($cols: $columns, $gridWidth: $gridWidth, $gutterWidth: $gutterWidth, $flush: $flush) {
   @for $n from 1 through ($cols - 1) {
     .suffix#{$classSeparator}#{$n} {
-      @include grid-suffix($n, $cols, $gridWidth, $gutterWidth);
+      @include grid-suffix($n, $cols, $gridWidth, $gutterWidth, false);
       @if ($flush) {
         &.flush {
           @include grid-suffix($n, $cols, $gridWidth, $gutterWidth, $flush);
