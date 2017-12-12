@@ -2,7 +2,6 @@ digi-grid
 =========
 
 [![Dependency Status](https://david-dm.org/digitaljhelms/digi-grid.png)](https://david-dm.org/digitaljhelms/digi-grid "David Badge")
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/digitaljhelms/digi-grid/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ---
 
