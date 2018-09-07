@@ -1,15 +1,9 @@
 digi-grid
 =========
 
-[![Dependency Status](https://david-dm.org/digitaljhelms/digi-grid.png)](https://david-dm.org/digitaljhelms/digi-grid "David Badge")
-
----
-
-The grid is custom, based primarily on [960.gs](http://960.gs/) by Nathan Smith, but also on [Semantic.gs](http://semantic.gs/) (formerly referred to as the 1Kb CSS Grid) by Tyler Tate. There is the concept of a container (inherent to 960.gs) however it is less meaningful in lieu of rows. While this may seem to slightly litter markup with `class="row"` declarations, the value is seen when it comes to nested columns.
+[Sass](https://sass-lang.com/) grid based primarily on [960.gs](http://960.gs/) by Nathan Smith, but also on [Semantic.gs](http://semantic.gs/) (formerly referred to as the 1Kb CSS Grid) by Tyler Tate. There is the concept of a container (inherent to 960.gs) however it is less meaningful in lieu of rows. While this may seem to slightly litter markup with `class="row"` declarations, the value is seen when it comes to nested columns.
 
 ## Usage
-
-To digest this project as a sub-project into super-project, the super-project must have access to either [Libsass](http://libsass.org/) or a [Ruby](https://www.ruby-lang.org/en/) binary and the [Sass](http://sass-lang.com/) gem.
 
 The grid uses the following configuration variables:
 
